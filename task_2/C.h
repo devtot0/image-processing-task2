@@ -10,7 +10,7 @@ using namespace std;
 using namespace cimg_library;
 
 double mean(vector<int> in_hist);
-double variance(vector<int> in_hist);
+double variance(vector<int> in_hist); 
 double stddev(vector<int> in_hist);
 double varcoi(vector<int> in_hist);
 double asyco(vector<int> in_hist);

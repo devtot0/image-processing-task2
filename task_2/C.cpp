@@ -8,7 +8,7 @@ double mean(vector<int> in_hist) {
 
 		sum += in_hist[i];
 	}
-	double result = 0;
+	double result = 0; 
 	for (int i = 0; i < in_hist.size(); i++) {
 		result += i * in_hist[i];
 	}

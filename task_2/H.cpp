@@ -13,7 +13,7 @@ vector<double> hhyper(vector<int> in_hist) {
 
 		if (in_hist[i] != 0) {
 			min = i;//i is a minimal non-zero value, "old" minimum color brightness
-			break;
+			break; 
 		}
 	}
 
