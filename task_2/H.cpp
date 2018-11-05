@@ -6,7 +6,8 @@ using namespace std;
 
 vector<double> hhyper(vector<int> in_hist, int min, int max) {
 
-	double sum = 0;
+	
+	/*
 	for (int i = min; i < in_hist.size(); i++) {
 
 		if (in_hist[i] != 0) {
@@ -22,22 +23,19 @@ vector<double> hhyper(vector<int> in_hist, int min, int max) {
 			break;
 		}
 
-	}
-	for (int i = min; i < max; i++) //number of pixels
-	{
-		sum += in_hist[i];
-	}
+	}*/
+	
 	vector<double> result;
-	for (int i = 0; i < in_hist.size(); i++) {
-		if (i<min || i>max) {
-			result.push_back(0);
-			continue;
+	for (int f = 0; f < in_hist.size(); f++) {
+		long double sum = 0;
+		for (int m = 0; m <= f; m++) //number of pixels
+		{
+			sum += in_hist[m];//suma z potegi
 		}
-		double current_sum = 0;
-		for (int j = 0; j <= i; j++) {//number of pixels with brightness less or equal than i
-			current_sum += in_hist[i];
-		}
-		double temp = min * (std::pow(max / min, current_sum / sum));//
+	
+		sum = sum / (512 * 512);
+		
+		double temp = min * (std::pow(double(max) / min,  sum));
 		result.push_back(temp);
 	}
 	return result;
@@ -46,7 +44,7 @@ vector<double> hhyper(vector<int> in_hist, int min, int max) {
 CImg<int> bw_hhyper(CImg<int> &image, vector<int> histogram,int min, int max)
 {
 	vector<double> altered = hhyper(histogram,min,max);
-	/*for (int x = 0; x < image.width(); x++)
+	for (int x = 0; x < image.width(); x++)
 	{
 		for (int y = 0; y < image.height(); y++)
 		{
@@ -54,7 +52,7 @@ CImg<int> bw_hhyper(CImg<int> &image, vector<int> histogram,int min, int max)
 				image(x, y, 0,c) = altered[image(x, y, 0,c)];
 			}
 		}
-	}*/
+	}
 	return image;
 }
 
