@@ -46,7 +46,7 @@ CImg<int> sexdetii(CImg<int>& image)
 }
 
 
-CImg<int> sexdetii(CImg<int>& image, vector<vector<int>> mask)
+CImg<int> sexdetii(CImg<int>& image, vector<vector<int>> mask,int divider)
 {
 	for (int x = 0; x < image.width(); x++)
 	{
@@ -54,27 +54,16 @@ CImg<int> sexdetii(CImg<int>& image, vector<vector<int>> mask)
 		{
 			for (int c = 0; c < image.spectrum(); c++)
 			{
-				int sum = 0;
-				int c00 = image(x, y, 0, c);
-				int c01 = image(x, y + 1, 0, c);
-				int c02 = image(x, y + 2, 0, c);
-				int c10 = image(x + 1, y, 0, c);
-				int c11 = image(x + 1, y + 1, 0, c);
-				int c12 = image(x + 1, y + 2, 0, c);
-				int c20 = image(x + 2, y, 0, c);
-				int c21 = image(x + 2, y + 1, 0, c);
-				int c22 = image(x + 2, y + 2, 0, c);
-				for (int p = 0; p < mask.size(); p++)
+				int sum = 0;				
+				for (int q = 0; q < mask.size(); q++)
 				{
-					for (int q = 0; q < mask.size(); q++)
+					for (int p = 0; p < mask.size(); p++)
 					{
-						if ((x + p) > image.width() || (y + q) > image.height())
+						if ((y + p) > image.width() || (x + q) > image.height())
 						{
 							continue;
 						}
-						int cc = image(x + p, q + y);
-						int m = mask[p][q];
-						sum = sum + mask[p][q] * image(x + q, p + y);
+						sum = sum + mask[p][q] * image(x + q, p + y,c);
 					}
 				}
 				if (sum > 255) {
@@ -83,7 +72,7 @@ CImg<int> sexdetii(CImg<int>& image, vector<vector<int>> mask)
 				if (sum < 0) {
 					sum = 0;
 				}
-				image(x, y, 0, c) = sum;
+				image(x, y, 0, c) = sum/divider;
 			}
 		}
 	}

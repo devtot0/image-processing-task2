@@ -7,5 +7,5 @@
 #include "CImg.h"
 using namespace cimg_library;
 using namespace std;
-CImg<int> sexdetii(CImg<int>& image,vector<vector<int>>);
+CImg<int> sexdetii(CImg<int>& image,vector<vector<int>>,int divider);
 CImg<int> sexdetii(CImg<int>& image);
