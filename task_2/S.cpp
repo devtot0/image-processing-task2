@@ -10,17 +10,7 @@ CImg<int> sexdetii(CImg<int>& image)
 			for (int c = 0; c < image.spectrum(); c++)
 			{
 				int sum = 0;
-				//for (int p = 0; p < mask.size(); p++)
-				//{
-				//	for (int q = 0; q < mask.size(); q++)
-				//	{
-				//		if ((x + p) > image.width() || (y + q) > image.height())
-				//		{
-				//			continue;
-				//		}
-				//		sum = sum + mask[p][q] * image(x + p, q + y);
-				//	}
-				//}
+
 
 				sum = -image(x, y, 0, c) //image(x,y)*(-1)
 					- image(x + 1, y, 0, c) //image(x+1,y)*(-1)

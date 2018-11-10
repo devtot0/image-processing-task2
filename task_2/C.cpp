@@ -66,6 +66,7 @@ double flatco(vector<int> in_hist) {
 	}
 	return (result / sum)*stddev_value-3;//or should it be in the sum?
 }
+
 double varcoii(vector<int> in_hist) {
 	double sum = 0;
 	for (int i = 0; i < in_hist.size(); i++) {//number of pixels
@@ -78,17 +79,19 @@ double varcoii(vector<int> in_hist) {
 	}
 	return (result / sum)/sum;
 }
+
 double entropy(vector<int> in_hist) {
 	double sum = 0;
-	for (int i = 0; i < in_hist.size(); i++) {//number of pixels
+	/*for (int i = 0; i < in_hist.size(); i++) {//number of pixels
 
 		sum += in_hist[i];
-	}
+	}*/
 	double result = 0;
 	for (int i = 0; i < in_hist.size(); i++) {
-		result += in_hist[i] * log2(in_hist[i]/sum);
+		if (in_hist[i] == 0) continue;
+		result += in_hist[i] * log2(double(in_hist[i]));
 	}
-	return -result / sum;
+	return -result;
 
 
 }
